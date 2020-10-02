@@ -5,19 +5,43 @@ Pippin Barr
 Here is a description of this template p5 project.
 **************************************************/
 
-let obstacle = {
+let badfile1 = {
   size: 20,
   x: 800,
   y: 800,
-  speed: -5,
+  speed: -8,
   velocityx: 0,
   velocityy: 0,
-  fill: {
-    r: 255,
-    g: 0,
-    b: 155
-  }
 };
+
+let badfile2 = {
+  size: 20,
+  x: 1200,
+  y: 200,
+  speed: -8,
+  velocityx: 0,
+  velocityy: 0,
+};
+
+let errormessage = {
+  size: 20,
+  x: 800,
+  y: 400,
+  speed: -3,
+  velocityx: 0,
+  velocityy: 0,
+};
+
+
+let dog
+let pngfile
+let successfail
+function preload() {
+  dog = loadImage('assets/images/Dog.gif');
+  pngfile = loadImage('assets/images/pngfile.PNG');
+  successfail = loadImage('assets/images/successfail.jpg');
+}
+
 
 // setup()
 //
@@ -25,8 +49,12 @@ let obstacle = {
 function setup() {
   createCanvas(800, 800);
 
-  obstacle.y = random(0,800);
-  obstacle.velocityx = obstacle.speed;
+  badfile1.y = random(0,800);
+  badfile1.velocityx = badfile1.speed;
+  badfile2.y = random(0,800);
+  badfile2.velocityx = badfile1.speed;
+  errormessage.y = random(0,800);
+  errormessage.velocityx = errormessage.speed;
 }
 
 // draw()
@@ -35,14 +63,50 @@ function setup() {
 function draw() {
   background(0);
 
-  obstacle.x = obstacle.x + obstacle.velocityx;
-  obstacle.y = obstacle.y + obstacle.velocityy;
+  image(dog, 100, 100);
 
-  fill(obstacle.fill.r, obstacle.fill.g, obstacle.fill.b);
-  ellipse(obstacle.x, obstacle.y, obstacle.size);
+push();
+  badfile1.x = badfile1.x + badfile1.velocityx;
+  badfile1.y = badfile1.y + badfile1.velocityy;
 
-  if (obstacle.x < 0) {
-    obstacle.x = 800;
-    obstacle.y = random(0,800);
+//  fill(obstacle.fill.r, obstacle.fill.g, obstacle.fill.b);
+  translate (badfile1.x, badfile1.y);
+  image(pngfile, 10, 10, 80, 80);
+
+  if (badfile1.x < -100) {
+    badfile1.x = 800;
+    badfile1.y = random(0,800);
   }
+pop();
+
+push();
+  badfile2.x = badfile2.x + badfile1.velocityx;
+  badfile2.y = badfile2.y + badfile1.velocityy;
+
+//  fill(obstacle.fill.r, obstacle.fill.g, obstacle.fill.b);
+  translate (badfile2.x, badfile2.y);
+  image(pngfile, 10, 10, 80, 80);
+
+  if (badfile2.x < -100) {
+    badfile2.x = 800;
+    badfile2.y = random(0,800);
+  }
+pop();
+
+push();
+  errormessage.x = errormessage.x + errormessage.velocityx;
+  errormessage.y = errormessage.y + errormessage.velocityy;
+
+//  fill(obstacle.fill.r, obstacle.fill.g, obstacle.fill.b);
+  translate (errormessage.x, errormessage.y);
+    image(successfail, 10, 10, 300, 200);
+
+  if (errormessage.x < -300) {
+    errormessage.x = 800;
+    errormessage.y = random(0,800);
+  }
+pop();
+
+
+
 }
