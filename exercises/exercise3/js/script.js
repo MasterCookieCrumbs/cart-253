@@ -1,20 +1,49 @@
 /**************************************************
 Template p5 project
-Pippin Barr
+Emile Simard
 
-Here is a description of this template p5 project.
 **************************************************/
 
-// setup()
-//
-// Description of setup() goes here.
-function setup() {
+let circle1 = {
+  x: 0,
+  y: 600,
+  size: 100,
+  x_velocity: 1,
+  y_velocity: 1,
+  speed: 3
+};
 
+let circle2 = {
+  x: 0,
+  y: 300,
+  size: 100,
+  x_velocity: 1,
+  y_velocity: 1,
+  speed: 3
+};
+
+function setup() {
+  createCanvas(900, 900);
+
+  circle1.x = width/3;
+  circle2.x = 2*width/3;
+  circle1.y = height/3;
+  circle2.y = 2*height/3;
+
+  circle1.x_velocity = random(-circle1.speed,circle1.speed);
+  circle2.x_velocity = random(-circle2.speed,circle2.speed);
+  circle1.y_velocity = random(-circle1.speed,circle1.speed);
+  circle2.y_velocity = random(-circle2.speed,circle2.speed);
 }
 
-// draw()
-//
-// Description of draw() goes here.
 function draw() {
+  background(0);
 
+  ellipse(circle1.x, circle1.x, circle1.size);
+  ellipse(circle2.x, circle2.x, circle2.size);
+
+  circle1.x = circle1.x + circle1.x_velocity;
+  circle2.x = circle2.x + circle2.x_velocity;
+  circle1.y = circle1.y + circle1.y_velocity;
+  circle2.y = circle2.y + circle2.y_velocity;
 }
