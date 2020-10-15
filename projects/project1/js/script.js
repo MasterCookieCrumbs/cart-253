@@ -10,12 +10,12 @@ let player = {
   size: 10,
 //  x_velocity: 2,
 //  y_velocity: 2,
-  speed: 2
+  speed: 8
 };
 
 let entity2 = {
-  x: 50,
-  y: 300,
+  x: -50,
+  y: -300,
   size: 150,
   x_velocity: 1,
   y_velocity: 1,
@@ -33,6 +33,8 @@ function setup() {
 
 function draw() {
   background(0);
+  borderCollisionplayer();
+
 
   if (state === `title`) {
     title();
@@ -43,6 +45,8 @@ function draw() {
   } else if (state === `lose`) {
 
   }
+
+
 
   if (keyIsDown(RIGHT_ARROW)) {
     player.x += player.speed;
@@ -102,6 +106,23 @@ function circleSetup() {
 // starting location for circles
 }
 
+
+function borderCollisionplayer() {
+  // checks if a player collides with the border of the Canvas and changes it's speed
+  if (player.x < 0) {
+    player.x = 0;
+  }
+  if (player.x > width) {
+    player.x = width;
+  }
+  if (player.y < 0) {
+    player.y = 0;
+  }
+  if (player.y > height) {
+    player.y = height;
+  }
+
+}
 
 
 function mousePressed() {
