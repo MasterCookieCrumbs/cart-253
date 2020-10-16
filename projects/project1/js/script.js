@@ -12,7 +12,7 @@ let player = {
 };
 
 let mazeEnd = {
-  x: 900,
+  x: 850,
   y: 450,
   size: 100,
 };
@@ -312,7 +312,8 @@ function title() {
 function simulation() {
   ellipse(player.x, player.y, player.size);
   push();
-  square(mazeEnd.x, mazeEnd.y);
+  fill(150, 150, 0);
+  rect(mazeEnd.x, mazeEnd.y, 20, 20);
   pop();
   push();
     strokeWeight(1);
@@ -377,6 +378,8 @@ function simulation() {
   pop();
 
 
+Winstate()
+
   if (keyIsDown(RIGHT_ARROW)) {
     player.x += player.speed;
   }
@@ -407,7 +410,7 @@ function lose() {
 
 function Winstate() {
   let d = dist(player.x, player.y, mazeEnd.x, mazeEnd.y);
-  if (d < player.size / 2 + mazeEnd.size / 2) {
+  if (d < player.size / 4 + mazeEnd.size / 4) {
     state = `win`;
   }
 }
