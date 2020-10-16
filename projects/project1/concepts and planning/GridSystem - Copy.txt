@@ -1,0 +1,62 @@
+  if (player.x <= horizontalWall1.x2 && player.x >= horizontalWall1.x1 && player.y >= horizontalWall1.y1 && player.y <= horizontalWall1.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall2.x2 && player.x >= horizontalWall2.x1 && player.y >= horizontalWall2.y1 && player.y <= horizontalWall2.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall3.x2 && player.x >= horizontalWall3.x1 && player.y >= horizontalWall3.y1 && player.y <= horizontalWall3.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall4.x2 && player.x >= horizontalWall4.x1 && player.y >= horizontalWall4.y1 && player.y <= horizontalWall4.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall5.x2 && player.x >= horizontalWall5.x1 && player.y >= horizontalWall5.y1 && player.y <= horizontalWall5.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall6.x2 && player.x >= horizontalWall6.x1 && player.y >= horizontalWall6.y1 && player.y <= horizontalWall6.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall7.x2 && player.x >= horizontalWall7.x1 && player.y >= horizontalWall7.y1 && player.y <= horizontalWall7.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall8.x2 && player.x >= horizontalWall8.x1 && player.y >= horizontalWall8.y1 && player.y <= horizontalWall8.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall9.x2 && player.x >= horizontalWall9.x1 && player.y >= horizontalWall9.y1 && player.y <= horizontalWall9.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall10.x2 && player.x >= horizontalWall10.x1 && player.y >= horizontalWall10.y1 && player.y <= horizontalWall10.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall11.x2 && player.x >= horizontalWall11.x1 && player.y >= horizontalWall11.y1 && player.y <= horizontalWall11.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall12.x2 && player.x >= horizontalWall12.x1 && player.y >= horizontalWall12.y1 && player.y <= horizontalWall12.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall13.x2 && player.x >= horizontalWall13.x1 && player.y >= horizontalWall13.y1 && player.y <= horizontalWall13.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall14.x2 && player.x >= horizontalWall14.x1 && player.y >= horizontalWall14.y1 && player.y <= horizontalWall14.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall15.x2 && player.x >= horizontalWall15.x1 && player.y >= horizontalWall15.y1 && player.y <= horizontalWall15.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall16.x2 && player.x >= horizontalWall16.x1 && player.y >= horizontalWall16.y1 && player.y <= horizontalWall16.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall17.x2 && player.x >= horizontalWall17.x1 && player.y >= horizontalWall17.y1 && player.y <= horizontalWall17.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall18.x2 && player.x >= horizontalWall18.x1 && player.y >= horizontalWall18.y1 && player.y <= horizontalWall18.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall19.x2 && player.x >= horizontalWall19.x1 && player.y >= horizontalWall19.y1 && player.y <= horizontalWall19.y1 + player.size) {
+    lose();
+  }
+  if (player.x <= horizontalWall20.x2 && player.x >= horizontalWall20.x1 && player.y >= horizontalWall20.y1 && player.y <= horizontalWall20.y1 + player.size) {
+    lose();
+  }
+
+
