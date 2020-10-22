@@ -20,8 +20,8 @@ let g = 255;
 let b = 105;
 
 let placeholderTimer = {
-  count: 0,
-  speed: 20
+  count: 800,
+  speed: 17.5
 }
 
 
@@ -58,6 +58,7 @@ function draw() {
   notAtimer();
 
 
+
 for (let i = 0; i < 9; i++) {
   displayFish(school[i]);
 }
@@ -69,13 +70,22 @@ for (let i = 0; i < 9; i++) {
 
 
 function notAtimer() {
-  if (placeholderTimer.count > 1000) {
-  placeholderTimer.count == 0;
-  r = random(200) + 55;
-  g = random(200) + 55;
-  b = random(200) + 55;
+
+  placeholderTimer.count = placeholderTimer.count - placeholderTimer.speed
+
+  if (placeholderTimer.count < 0) {
+  placeholderTimer.count = height;
+    r = random(105, 255);
+    g = random(105, 255);
+    b = random(105, 255);
 }
-  placeholderTimer.count = placeholderTimer.count + 20
+
+push();
+fill(r, g, b, 100);
+noStroke();
+  rect(350, placeholderTimer.count, 150, 150, 10);
+pop();
+
 }
 
 
