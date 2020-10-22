@@ -8,21 +8,31 @@ Here is a description of this template p5 project.
 // setup()
 
 "use strict";
+
 let school = [];
 
+let frames = 30; // FPS
+let secondsPassed = 0;
+let currentSelect = 0;
+
+
 let player = {
-  x: 100,
-  y: 100,
+  x: 400,
+  y: 400,
+  xvelocity: 0,
+  yvelocity: 0,
   size: 50,
-  xvelocity: 1,
-  yvelocity: 1,
-  speed: 3
+  speed: 8
 };
 
 // Description of setup() goes here.
 function setup() {
   createCanvas(800, 800);
-  random(0, width), random(0, height);
+//  noCursor();
+  frameRate(frames);
+
+  createPlayer(random(0, width), random(0, height));
+
   for (let i = 0; i < 9; i++) {
       school[i] = createFish(random(0, width), random(0, height));
   }
@@ -33,6 +43,7 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
   background(0);
+
   displayPlayer();
   movePlayer();
 
@@ -46,18 +57,20 @@ for (let i = 0; i < 9; i++) {
 
 }
 
-function createFish(x, y) {
-  let fish = {
+
+
+
+function createPlayer(x, y) {
+  let player = {
     x: x,
     y: y,
-    vx: 0,
-    vy: 0,
+    xvelocity: 0,
+    yvelocity: 0,
     size: 50,
-    speed: 3
+    speed: 4
   };
-  return fish;
+  return player;
 }
-
 
 function displayPlayer() {
   push();
@@ -68,18 +81,53 @@ function displayPlayer() {
 }
 
 function movePlayer() {
-  if (mouseX < player.x) {
+  if (mouseX < player.x - 0) {
     player.xvelocity = -player.speed;
   }
-  else {
+
+//  if (mouseX = player.x) {
+//    player.xvelocity = 0;
+//  }
+
+
+
+  if (mouseX > player.x + 0) {
     player.xvelocity = player.speed;
   }
+
+//player.xvelocity = 0;
+
+
   if (mouseY < player.y) {
     player.yvelocity = -player.speed;
   }
-  else {
+
+    if (mouseX - 8 < player.x && mouseX + 8 > player.x ) {
+      player.xvelocity = 0;
+    }
+
+
+    if (mouseY - 8 < player.y && mouseY + 8 > player.y ) {
+      player.yvelocity = 0;
+    }
+
+
+
+//  if (mouseY = player.y) {
+//    player.yvelocity = 0;
+//  }
+
+//  if (mouseY < player.y + 2 || mouseY > player.y - 2 ) {
+//    player.yvelocity = 0;
+//  }
+
+  if (mouseY > player.y) {
     player.yvelocity = player.speed;
   }
+
+//player.yvelocity = 0;
+
+
   player.x = constrain(player.x, 0, width);
   player.y = constrain(player.y, 0, width);
 
@@ -87,6 +135,18 @@ function movePlayer() {
   player.y = player.y + player.yvelocity;
 }
 
+
+function createFish(x, y) {
+  let fish = {
+    x: x,
+    y: y,
+    vx: 0,
+    vy: 0,
+    size: 50,
+    speed: 4
+  };
+  return fish;
+}
 
 function displayFish(fish) {
   push();
