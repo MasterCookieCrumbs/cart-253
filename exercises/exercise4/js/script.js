@@ -15,10 +15,19 @@ let frames = 30; // FPS
 let secondsPassed = 0;
 let currentSelect = 0;
 
+let r = 155;
+let g = 255;
+let b = 105;
+
+let placeholderTimer = {
+  count: 0,
+  speed: 20
+}
+
 
 let player = {
-  x: 400,
-  y: 400,
+  x: 600,
+  y: 600,
   xvelocity: 0,
   yvelocity: 0,
   size: 50,
@@ -46,6 +55,7 @@ function draw() {
 
   displayPlayer();
   movePlayer();
+  notAtimer();
 
 
 for (let i = 0; i < 9; i++) {
@@ -57,6 +67,16 @@ for (let i = 0; i < 9; i++) {
 
 }
 
+
+function notAtimer() {
+  if (placeholderTimer.count > 1000) {
+  placeholderTimer.count == 0;
+  r = random(200) + 55;
+  g = random(200) + 55;
+  b = random(200) + 55;
+}
+  placeholderTimer.count = placeholderTimer.count + 20
+}
 
 
 
@@ -74,7 +94,7 @@ function createPlayer(x, y) {
 
 function displayPlayer() {
   push();
-  fill(150, 250, 100);
+  fill(r, g, b);
   noStroke();
   ellipse(player.x, player.y, player.size);
   pop();
@@ -85,51 +105,33 @@ function movePlayer() {
     player.xvelocity = -player.speed;
   }
 
-//  if (mouseX = player.x) {
-//    player.xvelocity = 0;
-//  }
-
+  if (mouseX - 8 < player.x && mouseX + 8 > player.x ) {
+  player.xvelocity = 0;
+}
 
 
   if (mouseX > player.x + 0) {
     player.xvelocity = player.speed;
   }
 
-//player.xvelocity = 0;
 
 
   if (mouseY < player.y) {
     player.yvelocity = -player.speed;
   }
 
-    if (mouseX - 8 < player.x && mouseX + 8 > player.x ) {
-      player.xvelocity = 0;
-    }
-
-
-    if (mouseY - 8 < player.y && mouseY + 8 > player.y ) {
-      player.yvelocity = 0;
-    }
-
-
-
-//  if (mouseY = player.y) {
-//    player.yvelocity = 0;
-//  }
-
-//  if (mouseY < player.y + 2 || mouseY > player.y - 2 ) {
-//    player.yvelocity = 0;
-//  }
+  if (mouseY - 8 < player.y && mouseY + 8 > player.y ) {
+    player.yvelocity = 0;
+  }
 
   if (mouseY > player.y) {
     player.yvelocity = player.speed;
   }
 
-//player.yvelocity = 0;
 
 
-  player.x = constrain(player.x, 0, width);
-  player.y = constrain(player.y, 0, width);
+  player.x = constrain(player.x, 20, width - 20);
+  player.y = constrain(player.y, 20, height - 20);
 
   player.x = player.x + player.xvelocity;
   player.y = player.y + player.yvelocity;
@@ -150,7 +152,7 @@ function createFish(x, y) {
 
 function displayFish(fish) {
   push();
-  fill(150, 250, 100);
+  fill(r, g, b);
   noStroke();
   ellipse(fish.x, fish.y, fish.size);
   pop();
@@ -162,8 +164,8 @@ function moveFish(fish) {
     fish.vx = random(-fish.speed, fish.speed);
     fish.vy = random(-fish.speed, fish.speed);
   }
-  fish.x = constrain(fish.x, 0, width);
-  fish.y = constrain(fish.y, 0, width);
+  fish.x = constrain(fish.x, 20, width - 20);
+  fish.y = constrain(fish.y, 20, height - 20);
 
   fish.x = fish.x + fish.vx;
   fish.y = fish.y + fish.vy;
