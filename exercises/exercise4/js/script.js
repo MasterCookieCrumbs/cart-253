@@ -1,8 +1,7 @@
 /**************************************************
-Template p5 project
-Pippin Barr
+Excercise 4
+Emile Simard
 
-Here is a description of this template p5 project.
 **************************************************/
 
 // setup()
@@ -10,15 +9,17 @@ Here is a description of this template p5 project.
 "use strict";
 
 let school = [];
-let totaldancer = 5;
+let totaldancer = 8;
 
 let frames = 30; // FPS
-let secondsPassed = 0;
 let currentSelect = 1;
+let rounds = 1;
 
 let r = 155;
 let g = 255;
 let b = 105;
+
+let state = `title`;
 
 let placeholderTimer = {
   count: 800,
@@ -39,6 +40,7 @@ let player = {
 function setup() {
   createCanvas(800, 800);
   noCursor();
+  //set the frame limit to the variable (30fps)
   frameRate(frames);
 
   createPlayer(random(0, width), random(0, height));
@@ -48,18 +50,27 @@ function setup() {
   }
 }
 
-// draw()
-
-// Description of draw() goes here.
+// draw() runs every frame
 function draw() {
   background(0);
 
 //  displayPlayer();
+if (state === `title`) {
+  title();
+} else if (state === `simulation`) {
+  simulation();
+} else if (state === `win`) {
+  win();
+} else if (state === `lose`) {
+
+}
+
+function simulation() {
   movePlayer();
   notAtimer();
   repeatcurrentSelect();
+  Winstate();
 
-  //sets up the player
   school[0] = createdancer(player.x, player.y);
 
   fill(r + 50, g + 50, b + 50, 150);
@@ -72,6 +83,8 @@ for (let i = 0; i < totaldancer - 1; i++) {
 }
 for (let i = 0; i < totaldancer - 1; i++) {
   movedancer(school[i]);
+}
+
 }
 
 }
@@ -101,10 +114,7 @@ pop();
 function repeatcurrentSelect() {
   if (currentSelect >= totaldancer -1) {
     currentSelect = 0;
-}
-
-if (currentSelect >= totaldancer -2) {
-
+    rounds = rounds + 1
 }
 
 }
@@ -129,6 +139,47 @@ function displayPlayer() {
   ellipse(player.x, player.y, player.size);
   pop();
 }
+
+
+function title() {
+  push();
+  textSize(28);
+  textAlign(CENTER, CENTER);
+  fill(255, 255, 150);
+  text(`When the spotlight shines on you, freeze!!!`, width / 2, height / 2);
+  fill(255, 255, 255);
+  text(`Click to Begin`, width / 2, height / 2 + 40);
+  pop();
+}
+
+
+function lose() {
+  push();
+  textSize(36);
+  fill(255, 105, 105);
+  textAlign(CENTER, CENTER);
+  text(`You where caught moving in the spotlight! try again`, width / 2, height / 2);
+  player.speed = 0;
+  pop();
+}
+
+
+function win() {
+  push();
+  textSize(48);
+  fill(250, 255, 250);
+  textAlign(CENTER, CENTER);
+  text(`Congratulations, You won!`, width / 2, height / 2);
+  pop();
+}
+
+function Winstate() {
+
+  if (rounds >= 4) {
+    state = `win`;
+  }
+}
+
 
 function movePlayer() {
   if (mouseX < player.x - 0) {
@@ -157,8 +208,6 @@ function movePlayer() {
   if (mouseY > player.y) {
     player.yvelocity = player.speed;
   }
-
-
 
   player.x = constrain(player.x, 20, width - 20);
   player.y = constrain(player.y, 20, height - 20);
@@ -200,4 +249,10 @@ function movedancer(dancer) {
 
   dancer.x = dancer.x + dancer.vx;
   dancer.y = dancer.y + dancer.vy;
+}
+
+function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+  }
 }
