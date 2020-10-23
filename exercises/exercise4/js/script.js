@@ -10,6 +10,7 @@ Here is a description of this template p5 project.
 "use strict";
 
 let school = [];
+let totalFish = 6;
 
 let frames = 30; // FPS
 let secondsPassed = 0;
@@ -21,7 +22,7 @@ let b = 105;
 
 let placeholderTimer = {
   count: 800,
-  speed: 17.5
+  speed: 25
 }
 
 
@@ -42,7 +43,7 @@ function setup() {
 
   createPlayer(random(0, width), random(0, height));
 
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < totalFish - 1; i++) {
       school[i] = createFish(random(0, width), random(0, height));
   }
 }
@@ -59,10 +60,17 @@ function draw() {
 
 
 
-for (let i = 0; i < 9; i++) {
+
+  rect(school[currentSelect].x, school[currentSelect].y, 100, 100, 10);
+
+
+
+
+
+for (let i = 0; i < totalFish - 1; i++) {
   displayFish(school[i]);
 }
-for (let i = 0; i < 9; i++) {
+for (let i = 0; i < totalFish - 1; i++) {
   moveFish(school[i]);
 }
 
@@ -75,13 +83,14 @@ function notAtimer() {
 
   if (placeholderTimer.count < 0) {
   placeholderTimer.count = height;
-    r = random(105, 255);
-    g = random(105, 255);
-    b = random(105, 255);
+//  currentSelect = currentSelect + 1;
+    r = random(155, 255);
+    g = random(155, 255);
+    b = random(155, 255);
 }
 
 push();
-fill(r, g, b, 100);
+fill(r, g, b, 50);
 noStroke();
   rect(350, placeholderTimer.count, 150, 150, 10);
 pop();
@@ -115,7 +124,7 @@ function movePlayer() {
     player.xvelocity = -player.speed;
   }
 
-  if (mouseX - 8 < player.x && mouseX + 8 > player.x ) {
+  if (mouseX - 26 < player.x && mouseX + 26 > player.x ) {
   player.xvelocity = 0;
 }
 
@@ -130,7 +139,7 @@ function movePlayer() {
     player.yvelocity = -player.speed;
   }
 
-  if (mouseY - 8 < player.y && mouseY + 8 > player.y ) {
+  if (mouseY - 26 < player.y && mouseY + 26 > player.y ) {
     player.yvelocity = 0;
   }
 
