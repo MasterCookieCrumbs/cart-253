@@ -65,6 +65,9 @@ if (state === `title`) {
 
 }
 
+
+
+
 function simulation() {
   movePlayer();
   notAtimer();
@@ -110,12 +113,20 @@ pop();
 
 }
 
-
+// resets the spotlight back to the first dancer on the list
 function repeatcurrentSelect() {
   if (currentSelect >= totaldancer -1) {
     currentSelect = 0;
-    rounds = rounds + 1
+    rounds = rounds + 1;
+// adds up the number of times it has reset to eventually win
+
+  if (currentSelect = 0) {
+      if (player.xvelocity > 0 || player.yvelocity > 0) {
+        lose();
+    }
+    }
 }
+
 
 }
 
