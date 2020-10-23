@@ -10,11 +10,11 @@ Here is a description of this template p5 project.
 "use strict";
 
 let school = [];
-let totalFish = 6;
+let totaldancer = 5;
 
 let frames = 30; // FPS
 let secondsPassed = 0;
-let currentSelect = 0;
+let currentSelect = 1;
 
 let r = 155;
 let g = 255;
@@ -38,13 +38,13 @@ let player = {
 // Description of setup() goes here.
 function setup() {
   createCanvas(800, 800);
-//  noCursor();
+  noCursor();
   frameRate(frames);
 
   createPlayer(random(0, width), random(0, height));
 
-  for (let i = 0; i < totalFish - 1; i++) {
-      school[i] = createFish(random(0, width), random(0, height));
+  for (let i = 0; i < totaldancer - 1; i++) {
+      school[i] = createdancer(random(0, width), random(0, height));
   }
 }
 
@@ -54,24 +54,24 @@ function setup() {
 function draw() {
   background(0);
 
-  displayPlayer();
+//  displayPlayer();
   movePlayer();
   notAtimer();
+  repeatcurrentSelect();
+
+  //sets up the player
+  school[0] = createdancer(player.x, player.y);
+
+  fill(r + 50, g + 50, b + 50, 150);
+  noStroke();
+  ellipse(school[currentSelect].x, school[currentSelect].y, 100, 100, 10);
 
 
-
-
-  rect(school[currentSelect].x, school[currentSelect].y, 100, 100, 10);
-
-
-
-
-
-for (let i = 0; i < totalFish - 1; i++) {
-  displayFish(school[i]);
+for (let i = 0; i < totaldancer - 1; i++) {
+  displaydancer(school[i]);
 }
-for (let i = 0; i < totalFish - 1; i++) {
-  moveFish(school[i]);
+for (let i = 0; i < totaldancer - 1; i++) {
+  movedancer(school[i]);
 }
 
 }
@@ -83,10 +83,10 @@ function notAtimer() {
 
   if (placeholderTimer.count < 0) {
   placeholderTimer.count = height;
-//  currentSelect = currentSelect + 1;
-    r = random(155, 255);
-    g = random(155, 255);
-    b = random(155, 255);
+  currentSelect = currentSelect + 1;
+    r = random(105, 255);
+    g = random(105, 255);
+    b = random(105, 255);
 }
 
 push();
@@ -98,7 +98,18 @@ pop();
 }
 
 
+function repeatcurrentSelect() {
+  if (currentSelect >= totaldancer -1) {
+    currentSelect = 0;
+}
 
+if (currentSelect >= totaldancer -2) {
+
+}
+
+}
+
+//sets up the player
 function createPlayer(x, y) {
   let player = {
     x: x,
@@ -106,7 +117,7 @@ function createPlayer(x, y) {
     xvelocity: 0,
     yvelocity: 0,
     size: 50,
-    speed: 4
+    speed: 5
   };
   return player;
 }
@@ -157,35 +168,36 @@ function movePlayer() {
 }
 
 
-function createFish(x, y) {
-  let fish = {
+function createdancer(x, y) {
+  let dancer = {
     x: x,
     y: y,
     vx: 0,
     vy: 0,
     size: 50,
-    speed: 4
+    speed: 5,
+    freeze: 0
   };
-  return fish;
+  return dancer;
 }
 
-function displayFish(fish) {
+function displaydancer(dancer) {
   push();
   fill(r, g, b);
   noStroke();
-  ellipse(fish.x, fish.y, fish.size);
+  ellipse(dancer.x, dancer.y, dancer.size);
   pop();
 }
 
-function moveFish(fish) {
+function movedancer(dancer) {
   let change = random(0, 1);
   if (change < 0.05) {
-    fish.vx = random(-fish.speed, fish.speed);
-    fish.vy = random(-fish.speed, fish.speed);
+    dancer.vx = random(-dancer.speed *1.1, dancer.speed *1.1);
+    dancer.vy = random(-dancer.speed *1.1, dancer.speed *1.1);
   }
-  fish.x = constrain(fish.x, 20, width - 20);
-  fish.y = constrain(fish.y, 20, height - 20);
+  dancer.x = constrain(dancer.x, 20, width - 20);
+  dancer.y = constrain(dancer.y, 20, height - 20);
 
-  fish.x = fish.x + fish.vx;
-  fish.y = fish.y + fish.vy;
+  dancer.x = dancer.x + dancer.vx;
+  dancer.y = dancer.y + dancer.vy;
 }
