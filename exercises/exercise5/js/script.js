@@ -46,6 +46,7 @@ function draw() {
       ball.display(paddle1);
       ball.bounce();
       ball.offscreen();
+      ball.bounceoffborder();
     }
 
   }

@@ -25,6 +25,8 @@ class Ball{
 
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
+
+//    this.x = constrain(this.x, this.size/2, width);
   }
 
   offscreen() {
@@ -49,10 +51,31 @@ class Ball{
         this.y - this.size/2 < paddle1.y + paddle1.height/2) {
 
           let dx = this.x - paddle1.x;
-          this.vx = this.vx + map(dx,-paddle1.width/2,paddle1.width/2,-3,3);
+          this.vx = this.vx + map(dx,-paddle1.width/2,paddle1.width/2,-6,6);
 
           this.vy = this.vy * -1;
           this.ay = 0;
+
+
+        }
+
+//    if (this.y + this.size/2 >= height) {
+//      this.vy = this.vy * -1;
+//      this.ay = 0;
+//    }
+  }
+
+  bounceoffborder() {
+    if (this.x <= this.size/2) {
+//lefhand side border
+          this.vx = this.vx * -1;
+          this.ax = 0;
+        }
+
+    if (this.x >= width - this.size/2) {
+  //lefhand side border
+          this.vx = this.vx * -1;
+          this.ax = 0;
 
 
         }
