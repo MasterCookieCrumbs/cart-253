@@ -12,6 +12,7 @@ Here is a description of this template p5 project.
 
 let gravity = 0.0032;
 let paddle1;
+let paddle2;
 
 let balls = [];
 let numberofballs = 1;
@@ -20,9 +21,10 @@ function setup() {
   createCanvas(1800, 900);
 
   paddle1 = new Paddle1(200, 20);
+  paddle2 = new Paddle2(200, 20);
 
   for(let i = 0; i < numberofballs; i++) {
-    let x = random (50, width/3);
+    let x = random (50, width/4);
     let y = -200;
     let ball = new Ball(x,y);
     balls.push(ball);
@@ -43,12 +45,16 @@ function draw() {
   paddle1.move();
   paddle1.display();
 
+  paddle2.move();
+  paddle2.display();
+
   for (let i = 0; i < balls.length; i++) {
     let ball = balls[i];
     if (ball.active) {
       ball.gravity(gravity);
       ball.move();
       ball.display(paddle1);
+      ball.display(paddle2);
       ball.bounce();
       ball.offscreen();
       ball.bounceoffborder();

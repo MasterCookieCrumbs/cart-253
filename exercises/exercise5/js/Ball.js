@@ -56,6 +56,20 @@ class Ball{
           this.vy = this.vy * -1;
           this.ay = 0;
 
+        }d
+
+
+
+    if (this.x > paddle2.x - paddle2.width/2 &&
+        this.x < paddle2.x + paddle2.width/2 &&
+        this.y + this.size/2 > paddle2.y - paddle2.height/2 &&
+        this.y - this.size/2 < paddle2.y + paddle2.height/2) {
+
+            let dx = this.x - paddle2.x;
+            this.vx = this.vx + map(dx,-paddle2.width/2,paddle2.width/2,-6,6);
+
+            this.vy = this.vy * -1;
+            this.ay = 0;
 
         }
 
