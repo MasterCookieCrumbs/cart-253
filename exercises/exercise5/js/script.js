@@ -1,6 +1,6 @@
 /**************************************************
-Template p5 project
-Pippin Barr
+Exercise 05
+Emile Simard
 
 Here is a description of this template p5 project.
 **************************************************/
@@ -19,10 +19,10 @@ let numberofballs = 1;
 function setup() {
   createCanvas(1800, 900);
 
-  paddle1 = new Paddle1(200, 40);
+  paddle1 = new Paddle1(200, 20);
 
   for(let i = 0; i < numberofballs; i++) {
-    let x = random (0, width/3);
+    let x = random (50, width/3);
     let y = -200;
     let ball = new Ball(x,y);
     balls.push(ball);
@@ -34,6 +34,11 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
   background(0);
+  push();
+  textSize(42);
+  fill(200, 200, 200);
+  text('score: ' + numberofballs, width - 300, 100);
+  pop();
 
   paddle1.move();
   paddle1.display();

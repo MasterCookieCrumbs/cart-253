@@ -4,12 +4,21 @@ class Paddle1 {
     this.width = w;
     this.height = h;
     this.x = 0;
-    this.y = height - this.height/2;
+    this.y = height - this.height*2;
   }
 
   move() {
-    this.x = mouseX;
-    this.x = constrain(this.x, 0, width/2 - this.width/2);
+
+    if (keyIsDown(68)) {
+      this.x += 10;
+    }
+
+    if (keyIsDown(65)) {
+      this.x -= 10;
+    }
+
+    this.x = constrain(this.x, this.width/2, width/2 - this.width/2);
+
   }
 
   display() {
