@@ -23,7 +23,7 @@ class Paddle1 {
 
   display() {
     push();
-    fill(155);
+    fill(150, 25, 25,);
     noStroke();
     rectMode(CENTER);
     rect(this.x,this.y,this.width,this.height);

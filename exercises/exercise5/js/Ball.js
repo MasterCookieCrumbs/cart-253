@@ -7,7 +7,7 @@ class Ball{
     this.vy = 0;
     this.ax = 0;
     this.ay = 0;
-    this.maxSpeed = 10;
+    this.maxSpeed = 12;
     this.size = 50;
     this.active = true;
   }
@@ -51,12 +51,12 @@ class Ball{
         this.y - this.size/2 < paddle1.y + paddle1.height/2) {
 
           let dx = this.x - paddle1.x;
-          this.vx = this.vx + map(dx,-paddle1.width/2,paddle1.width/2,-6,6);
+          this.vx = this.vx + map(dx,-paddle1.width/2,paddle1.width/2,-4,4);
 
           this.vy = this.vy * -1;
           this.ay = 0;
 
-        }d
+        }
 
 
 
@@ -86,18 +86,19 @@ class Ball{
           this.ax = 0;
         }
 
-    if (this.x >= width - this.size/2) {
-  //lefhand side border
-          this.vx = this.vx * -1;
-          this.ax = 0;
-
-
-        }
-
 //    if (this.y + this.size/2 >= height) {
 //      this.vy = this.vy * -1;
 //      this.ay = 0;
 //    }
+  }
+
+  scorepoint() {
+    if (this.x >= width + this.size/2) {
+      //lefhand side border
+      score += 1;
+      this.active = false;
+
+        }
   }
 
 }
