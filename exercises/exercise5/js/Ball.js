@@ -58,8 +58,6 @@ class Ball{
 
         }
 
-
-
     if (this.x > paddle2.x - paddle2.width/2 &&
         this.x < paddle2.x + paddle2.width/2 &&
         this.y + this.size/2 > paddle2.y - paddle2.height/2 &&
@@ -86,10 +84,6 @@ class Ball{
           this.ax = 0;
         }
 
-//    if (this.y + this.size/2 >= height) {
-//      this.vy = this.vy * -1;
-//      this.ay = 0;
-//    }
   }
 
   scorepoint() {
