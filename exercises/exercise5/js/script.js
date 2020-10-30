@@ -13,12 +13,17 @@ let gravity = 0.0038;
 let paddle1;
 let paddle2;
 let score = 0;
-let strikes = 3;
+let strikes = 0;
 
 let balls = [];
-let numberofballs = 20;
+let numberofballs = 1;
 
 let state = `title`;
+
+let placeholderTimer = {
+  count: -100,
+  speed: -5
+}
 
 function setup() {
   createCanvas(1800, 900);
@@ -44,6 +49,8 @@ function draw() {
   textSize(42);
   fill(200, 250, 200);
   text('score: ' + score, width - 300, 100);
+  fill(200, 200, 250);
+  text('strikes: ' + strikes, width - 600, 100);
   pop();
 
 
@@ -56,11 +63,13 @@ function draw() {
   } else if (state === `win`) {
     win();
   } else if (state === `lose`) {
-
+    lose();
   }
 
 function simulation() {
   Winstate();
+  Loosestate();
+  notAtimer();
   paddle1.move();
   paddle1.display();
 
@@ -103,7 +112,7 @@ function simulation() {
     textSize(36);
     fill(255, 105, 105);
     textAlign(CENTER, CENTER);
-    text(`Three Strikes1 You're out! try again`, width / 2, height / 2);
+    text(`Three Strikes! You're out! try again`, width / 2, height / 2);
     pop();
   }
 
@@ -117,6 +126,12 @@ function simulation() {
   }
 
 
+  function Loosestate() {
+  if (strikes >= 3) {
+    state = `lose`;
+  }
+}
+
   function Winstate() {
   if (score >= 4) {
     state = `win`;
@@ -126,6 +141,27 @@ function simulation() {
 
 }
 
+
+function notAtimer() {
+
+  placeholderTimer.count = placeholderTimer.count - placeholderTimer.speed
+
+  if (placeholderTimer.count > 2000) {
+  placeholderTimer.count = -100;
+  let x = random (150, width/4);
+  let y = random (-400, -300);
+  let ball = new Ball(x,y);
+  balls.push(ball);
+//  numberofballs =+ numberofballs + 1;
+}
+
+push();
+fill(100, 100, 150, 80);
+noStroke();
+  rect(placeholderTimer.count, 100, 150, 150, 10);
+pop();
+
+}
 
 
 function mousePressed() {

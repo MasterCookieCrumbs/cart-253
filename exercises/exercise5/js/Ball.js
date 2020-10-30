@@ -31,6 +31,7 @@ class Ball{
 
   offscreen() {
     if (this.y > height + 100) {
+      strikes = strikes + 1;
       // sets object property active to false when object falls offscreen
       this.active = false;
     }
