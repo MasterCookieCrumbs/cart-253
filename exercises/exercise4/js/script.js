@@ -11,6 +11,7 @@ Emile Simard
 let school = [];
 let totaldancer = 8;
 
+
 let frames = 30; // FPS
 let currentSelect = 1;
 let rounds = 1;
@@ -74,6 +75,7 @@ function simulation() {
   repeatcurrentSelect();
   Winstate();
 
+//  Player sprite
   school[0] = createdancer(player.x, player.y);
 
   fill(r + 50, g + 50, b + 50, 150);
