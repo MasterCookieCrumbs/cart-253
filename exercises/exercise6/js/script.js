@@ -70,6 +70,15 @@ function draw() {
   createstaff();
 
 
+  for (let i = 0; i < musicnotesarray.length; i++) {
+    let musicnote = musicnotesarray[i];
+    if (musicnote.active) {
+      musicnote.display();
+
+    }
+  }
+
+
 //    ellipse(school[currentSelect].x, school[currentSelect].y, 100, 100, 10);
 
 
