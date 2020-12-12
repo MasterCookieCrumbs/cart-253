@@ -74,7 +74,7 @@ function draw() {
     paddle2.move();
     paddle2.display();
 
-//move and collision checks
+//move and collision checks for every ball
     for (let i = 0; i < balls.length; i++) {
       let ball = balls[i];
       if (ball.active) {

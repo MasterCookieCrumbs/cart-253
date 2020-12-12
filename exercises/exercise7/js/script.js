@@ -23,6 +23,11 @@ let circle1 = {
   vy: 16
 };
 
+let placeholderTimer = {
+  count: -100,
+  speed: -5
+}
+
 // setup()
 //
 // Description of setup() goes here.
@@ -70,7 +75,7 @@ function draw() {
   borderCollisionCircle1();
   //circleCollision()
   createstaff();
-
+  notAtimer();
 
 
 
@@ -147,6 +152,27 @@ function circleCollision() {
 
 
 }
+
+function notAtimer() {
+
+  placeholderTimer.count = placeholderTimer.count - placeholderTimer.speed
+// once the timer runs out it creates a new ball
+  if (placeholderTimer.count > 2000) {
+    placeholderTimer.count = -100;
+    let x = random(150, width / 4);
+    let y = random(-400, -300);
+    let ball = new Ball(x, y);
+    balls.push(ball);
+  }
+
+  push();
+  fill(100, 100, 150, 80);
+  noStroke();
+  rect(placeholderTimer.count, 100, 150, 150, 10);
+  pop();
+
+}
+
 
 
 function mousePressed() {

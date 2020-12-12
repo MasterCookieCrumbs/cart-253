@@ -92,7 +92,7 @@ function createstaff()  {
   for (let i = 0; i < totalStaff; i++) {
     push();
     fill(100, 100, 100, 50);
-      line(width/2, -width, width/totalStaff*(0.5+(i)), height);
+      line(width/totalStaff*(0.5+(i)), 0, width/totalStaff*(0.5+(i)), height);
 
 
 
