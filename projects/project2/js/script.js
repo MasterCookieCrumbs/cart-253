@@ -1,59 +1,41 @@
 /**************************************************
-Excercise 7
+Template p5 project
 Emile Simard
-
-
 **************************************************/
 
 "use strict";
+let balls = [];
 
-let school = [];
-let musicnotesarray = [];
-let totaldancer = 4;
+// F minor
+//let notes = ['F3','G3','Ab4','Bb4','C4','Db4','Eb4','F4'];
+
+// Full list of notes
+let notes = ['F6', 'C6', 'G6', 'D6', 'A6', 'E6', 'B6', 'Gb6', 'Db6', 'Ab6', 'Eb6', 'Bb6', 'a6', 'e6', 'd6', 'f#6', 'c#6', 'g#6', 'd#6', 'bb6', 'f6', 'c6', 'g6', 'd6' ];
+//let notes = [ 'a6', 'e6', 'd6', 'f#6', 'c#6', 'g#6', 'd#6', 'bb6', 'f6', 'c6', 'g6', 'd6' ];
+// 24 notes total
 
 let totalmusicnotesarray = 0;
-let totalStaff = 16;
-let totalRows = 5;
+let totalStaff = 24;
+let totalRows = 8;
 
-let circle1 = {
-  x: 200,
-  y: 200,
-  size: 60,
-  vx: 14,
-  vy: 16
-};
+let placeholderTimer = {
+  count: -100,
+  speed: -2
+}
 
 // setup()
-//
-// Description of setup() goes here.
+
 function setup() {
-  createCanvas(950, 800);
+  createCanvas(940,920);
 
 
-
-  for (let i = 0; i < totaldancer - 1; i++) {
-      school[i] = createdancer(random(0, width), random(0, height));
-  }
 
   for (let i = 0; i < totalmusicnotesarray - 1; i++) {
       musicnotesarray[i] = createmusicnote(15, 15);
+
   }
 
-}
-
-function createdancer(x, y) {
-  let dancer = {
-    x: x,
-    y: y,
-    vx: 0,
-    vy: 0,
-    size: 50,
-    speed: 5,
-  };
-  return dancer;
-}
-
-function createmusicnote(x, y) {
+  function createmusicnote(x, y) {
   let musicnote = {
     x: x,
     y: y,
@@ -62,29 +44,36 @@ function createmusicnote(x, y) {
   return musicnote;
 }
 
+
+
+
+  userStartAudio();
+}
+
 // draw()
 //
 // Description of draw() goes here.
 function draw() {
-  background(240, 180, 120);
-  borderCollisionCircle1();
-  //circleCollision()
+  background(200, 100, 100);
+
+  notAtimer();
+
+
   createstaff();
 
 
 
 
-  for (let i = 0; i < musicnotesarray.length; i++) {
-    let musicnote = musicnotesarray[i];
-    if (musicnote.active) {
+//  for (let i = 0; i < musicnotesarray.length; i++) {
+//    let musicnote = musicnotesarray[i];
+//    if (musicnote.active) {
+//    }
+//  }
 
-    }
-  }
 
-
-for (let i = 0; i < musicnotesarray; i++) {
-displaymusicnote(musicnotesarray[i]);
-}
+//for (let i = 0; i < musicnotesarray; i++) {
+//displaymusicnote(musicnotesarray[i]);
+//}
 
 
 
@@ -96,60 +85,106 @@ function createstaff()  {
 
 
 
-      fill(10);
-      noStroke();
-        ellipse(width/totalStaff*(0.5+(i)), height, 30);
-        ellipse((width/totalStaff*(0.5+(i))), height/2, 30);
-        let musicnote = new Musicnote(50, 100);
+//      fill(10);
+//      noStroke();
+//        ellipse(width/totalStaff*(0.5+(i)), height, 30);
+//        ellipse((width/totalStaff*(0.5+(i))), height/2, 30);
 
+//    pop();
+}
+
+}
+
+
+
+
+
+
+  let img = createImage(24, 60);
+  img.loadPixels();
+  for (let i = 0; i < img.width; i++) {
+    for (let j = 0; j < img.height; j++) {
+      img.set(i, j, color(0, 200, 200, (i % img.width) * 4 + 80));
+    }
+  }
+  img.updatePixels();
+  image(img, 24, 24);
+
+
+// runs these for every ball
+  for (let i = 0; i < balls.length; i++) {
+    let ball = balls[i];
+      roundUp();
+//    ball.move();
+//    ball.bounce();
+    ball.display();
+  }
+}
+
+//function saveScript() {
+function keyReleased() {
+  if (value === 13) {
+  let img = createImage(24, 600);
+  img.loadPixels();
+  for (let i = 0; i < img.width; i++) {
+    for (let j = 0; j < img.height; j++) {
+      img.set(i, j, color(200, 0, 50));
+
+    }
+  }
+  img.updatePixels();
+  image(img, 926, 24);
+  save(img, 'myImage.png');
+
+
+  }
+}
+
+
+
+  function notAtimer() {
+
+    placeholderTimer.count = placeholderTimer.count - placeholderTimer.speed
+  // once the timer runs out it creates a new ball
+    if (placeholderTimer.count > height) {
+      placeholderTimer.count = 0;
+//      let x = random(150, width / 4);
+//      let y = random(-400, -300);
+//      let ball = new Ball(x, y);
+//      balls.push(ball);
+    }
+
+    push();
+    fill(100, 100, 150, 80);
+    noStroke();
+    rect(0, placeholderTimer.count, width, 20);
     pop();
-}
-
-}
-
-
-
-function displaymusicnote(musicnote) {
-  push();
-  fill(0);
-  noStroke();
-  ellipse(musicnote.x, musicnote.y, musicnote.size);
-  pop();
-}
-
-function circles() {
-  // draws both circles
-  ellipse(circle1.x, circle1.y, circle1.size);
-}
-
-
-
-function borderCollisionCircle1() {
-  // checks if a circle1 collides with the border of the Canvas and changes it's speed
-  if (circle1.x <= circle1.size/2 || circle1.x >= width - circle1.size/2) {
-    circle1.vx = circle1.vx * -1;
 
   }
-  if (circle1.y <= circle1.size/2 || circle1.y >= height - circle1.size/2) {
-    circle1.vy = circle1.vy * -1;
 
-  }
-}
-
-function circleCollision() {
-  // checks collisions with other circles
-  let d = dist(circle1.x, circle1.y, circle2.x, circle2.y);
-  if (d < circle1.size / 2 + circle2.size / 2) {
-    // collision event
-  }
-}
-
-
-
-}
-
+      //createBall(mouseX,mouseY);
 
 function mousePressed() {
-  let musicnote = new createmusicnote(mouseX,mouseY);
-  musicnotesarray.push(musicnote);
+  for (let i = 0; i < musicnotesarray.length; i++) {
+    let musicnote = musicnotesarray[i];
+      let ball = balls[i];
+      createBall(mouseX,mouseY);
+  }
+
+    for (let i = 0; i < balls.length; i++) {
+      let ball = balls[i];
+
+  }
+
+
+}
+
+//if (keyIsDown(65)) {
+//}
+
+function createBall(x,y) {
+  // which note will each ball have
+  let note = random(notes);
+  let ball = new Ball(x,y,note);
+  balls.push(ball);
 }
