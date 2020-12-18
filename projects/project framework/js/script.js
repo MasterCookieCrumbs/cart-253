@@ -22,6 +22,12 @@ let entity2 = {
   speed: 4
 };
 
+
+
+
+
+
+
 let state = `title`;
 
 
@@ -34,15 +40,6 @@ function setup() {
 function draw() {
   background(0);
 
-  if (state === `title`) {
-    title();
-  } else if (state === `simulation`) {
-    simulation();
-  } else if (state === `win`) {
-    win();
-  } else if (state === `lose`) {
-
-  }
 }
 
 
@@ -95,43 +92,17 @@ function circleSetup() {
 }
 
 
+window.addEventListener('load', function() {
+  document.querySelector('input[type="file"]').addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+          var img = document.querySelector('img');  // $('img')[0]
+          img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+          img.onload = imageIsLoaded;
+      }
+  });
+});
 
-function mousePressed() {
-  if (state === `title`) {
-    state = `simulation`;
-  }
-}
-
-function circles() {
-  ellipse(entity1.x, entity1.x, entity1.size);
-  ellipse(entity2.x, entity2.x, entity2.size);
-}
-
-function move() {
-  entity1.x = entity1.x + entity1.x_velocity;
-  entity2.x = entity2.x + entity2.x_velocity;
-
-  entity1.y = entity1.y + entity1.y_velocity;
-  entity2.y = entity2.y + entity2.y_velocity;
-}
-
-function borderCollisionentity1() {
-  if (entity1.x < 0 || entity1.x > width || entity1.y < 0 || entity1.y > height) {
-    entity1.x_velocity = random(-entity1.speed, entity1.speed);
-    entity1.y_velocity = random(-entity1.speed, entity1.speed);
-  }
-}
-
-function borderCollisionentity2() {
-  if (entity2.x < 0 || entity2.x > width || entity2.y < 0 || entity2.y > height) {
-    entity2.x_velocity = random(-entity2.speed, entity2.speed);
-    entity2.y_velocity = random(-entity2.speed, entity2.speed);
-  }
-}
-
-function circleCollision() {
-  let d = dist(entity1.x, entity1.y, entity2.x, entity2.y);
-  if (d < entity1.size / 2 + entity2.size / 2) {
-    state = `win`;
-  }
+function imageIsLoaded() {
+  alert(this.src);  // blob url
+  // update width and height ...
 }

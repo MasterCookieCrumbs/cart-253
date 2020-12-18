@@ -21,7 +21,7 @@ class Ball {
 //    this.oscillator.start();
 
     // Synth
-    // What not will it play?
+    // What note will it play?
     this.note = note;
     this.synth = new p5.PolySynth();
   }
